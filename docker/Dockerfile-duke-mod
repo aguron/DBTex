@@ -1,0 +1,9 @@
+# Adapted from repository https://github.com/anibali/docker-pytorch
+FROM nvcr.io/nvidia/pytorch:20.03-py3
+
+COPY requirements-duke.txt ./
+
+RUN pip install --no-cache-dir -r requirements-duke.txt
+
+# Set the default command to python3
+CMD ["bash"]

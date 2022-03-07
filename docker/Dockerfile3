@@ -1,0 +1,19 @@
+# Adapted from repository https://github.com/anibali/docker-pytorch
+FROM nvcr.io/nvidia/pytorch:20.08-py3
+
+
+
+COPY requirements.txt ./
+
+RUN pip install --no-cache-dir -r requirements.txt
+
+RUN pip install ray albumentations
+
+ARG USER_ID
+ARG GROUP_ID
+ARG USER_NAME
+RUN addgroup --gid $GROUP_ID user
+RUN useradd -rm -d /home/$USER_NAME -s /bin/bash -g user -G sudo -u 1001 $USER_NAME
+USER $USER_NAME
+
+CMD ["bash"]

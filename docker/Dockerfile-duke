@@ -1,0 +1,16 @@
+FROM python:3.8
+
+RUN pip install --upgrade pip==20.3.1
+
+COPY requirements-duke.txt ./
+
+RUN pip install --no-cache-dir -r requirements-duke.txt
+
+WORKDIR /duke-dbt
+
+# Port to access jupyter
+EXPOSE 8888
+EXPOSE 8889
+
+# Set the default command to python3
+CMD ["bash"]
